@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>FromJSONToHTMLTable</title>
@@ -14,19 +15,58 @@
       border: 1px solid black;
     }
 
-    td, th {
+    td,
+    th {
       padding: 5px;
     }
   </style>
 </head>
+
 <body>
   <div id="wrapper">
   </div>
   <script>
     function fromJSONToHTMLTable(input) {
-      
-    }
+      const data = JSON.parse(input);
 
+      if (data.length === 0) return console.log('<table></table>');
+      
+      const headers = getHeaders(data);
+      const rows = getDataRows(data);
+      const table = `<table>\n${headers}\n${rows}</table>`;
+
+      function escapeHTML(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&apos;')
+      }
+
+      function getHeaders(data) {
+        const keys = Object.keys(data[0])
+        let row = ' <tr>';
+        for (let key of keys) {
+          row += `<th>${escapeHTML(key)}</th>`
+        }
+        row += '</tr>';
+        return row;
+      }
+
+      function getDataRows(data) {
+        let rows = '';
+        for (let obj of data) {
+          rows += ' <tr>'
+          for (let value of Object.values(obj)) {
+            rows += `<td>${escapeHTML(value)}</td>`;
+          }
+          rows += '</tr>\n'
+        }
+        return rows;
+      }
+      return table;
+    }
     window.onload = function () {
       let container = document.getElementById('wrapper');
       container.innerHTML =
@@ -34,4 +74,5 @@
     };
   </script>
 </body>
+
 </html>
