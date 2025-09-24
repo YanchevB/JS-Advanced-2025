@@ -14,7 +14,6 @@ function fromJSONToHTMLTable(input) {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
-      .replace(/'/g, '&apos;')
   }
   
   function getHeaders(data) {
