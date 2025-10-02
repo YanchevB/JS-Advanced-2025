@@ -27,8 +27,17 @@ function cars(input) {
       console.log(output);
 
       function collectProps(name) {
-        if (parents[name]) collectProps(parents[name]);
         Object.assign(result, objects[name]);
+        
+        let p = parents[name];
+        while(p) {
+          for (const [k, v] of Object.entries(objects[p])) {
+            if (!(k in result)) {
+              result[k] = v;
+            }
+          }
+          p = parents[p];
+        }
       }
     }
   }
