@@ -13,14 +13,14 @@ function solve() {
     const table = document.getElementsByTagName('tbody')[0];
     
     for (let entry of data) {
-      table.innerHTML +=`       
-        <tr>
-          <td><img src="${entry.img}"></td>
-          <td><p>${entry.name}</p></td>
-          <td><p>${entry.price}</p></td>
-          <td><p>${entry.decFactor}</p></td>
-          <td><input type="checkbox"></td>
-        </tr>`;
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><img src="${entry.img}"></td>
+        <td><p>${entry.name}</p></td>
+        <td><p>${entry.price}</p></td>
+        <td><p>${entry.decFactor}</p></td>
+        <td><input type="checkbox"></td>`;
+      table.appendChild(row);
     }
   }
 
