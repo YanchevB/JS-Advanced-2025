@@ -1,4 +1,4 @@
-function isOddOrEven(string) {
+export function isOddOrEven(string) {
   if (typeof (string) !== 'string') {
     return undefined;
   }
