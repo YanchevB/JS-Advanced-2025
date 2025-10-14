@@ -1,4 +1,4 @@
-import { isOddOrEven } from './02-even-or-odd.js';
+import { isOddOrEven } from './evenOrOdd.js';
 import { expect } from "chai";
 
 describe('Even or odd function test suite', () => {
