@@ -13,7 +13,7 @@ function validate() {
 
     const usernameRegex = /^[A-Za-z0-9]{3,20}$/;
     const passwordRegex = /^\w{5,15}$/;
-    const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
+    const emailRegex = /^[^@.]+@[^@]*\.[^@]*$/;
 
     isCompanyRef.addEventListener('change', () => {
         companyInfo.style.display = 
@@ -34,26 +34,28 @@ function validate() {
         validateInput(password, passwordRegex, passwordRef);
 
         if (password !== confirmPassword) {
-            confirmPasswordRef.style.border = 'solid red';
-            passwordRef.style.border = 'solid red';
+            confirmPasswordRef.style.borderColor = 'red';
+            passwordRef.style.borderColor = 'red';
         }
 
         if (companyInfo.style.display === 'block') {
             if (companyNumber >= 1000 && companyNumber <= 9999) {
-                companyNumberRef.style.border = 'none';
+                companyNumberRef.style.borderColor = '';
             } else {
-                companyNumberRef.style.border = 'solid red';
+                companyNumberRef.style.borderColor = 'red';
             }
         }
 
         const inputs = Array.from(document.querySelectorAll('input'));
-        const filtered = inputs.filter(input => input.style.border === 'solid red');
+        const filtered = inputs.filter(input => input.style.borderColor === 'red');
         if (filtered.length === 0 ) {
             validDiv.style.display = 'block';
+        } else {
+            validDiv.style.display = 'none';
         }
     })
 
     function validateInput(input, regex, ref) {
-        return !regex.test(input) ? ref.style.border = 'solid red' : ref.style.border = 'none';
+        return !regex.test(input) ? ref.style.borderColor = 'red' : ref.style.borderColor = '';
     }
 }
