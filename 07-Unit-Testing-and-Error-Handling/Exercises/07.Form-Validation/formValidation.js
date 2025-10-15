@@ -32,6 +32,7 @@ function validate() {
         validateInput(username, usernameRegex, usernameRef);
         validateInput(email, emailRegex, emailRef);
         validateInput(password, passwordRegex, passwordRef);
+        validateInput(confirmPassword, passwordRegex, confirmPasswordRef);
 
         if (password !== confirmPassword) {
             confirmPasswordRef.style.borderColor = 'red';
