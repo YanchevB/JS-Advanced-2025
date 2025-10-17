@@ -1,4 +1,4 @@
-const streamingServiceSelector = {
+export const streamingServiceSelector = {
     selectingContent(type, platform, genre) {
         const supportedGenres = ["Action", "Comedy", "Drama", "Thriller", "Horror", "Romance", "Sci-Fi"];
         if (!supportedGenres.includes(genre)) {
@@ -32,6 +32,3 @@ const streamingServiceSelector = {
         }
     }
 }
-
-
-module.exports = streamingServiceSelector;
